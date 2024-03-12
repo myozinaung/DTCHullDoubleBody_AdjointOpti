@@ -14,10 +14,6 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-SIMPLE
-{
-    nNonOrthogonalCorrectors 0;
-}
 
 solvers
 {
@@ -26,7 +22,7 @@ solvers
     {
         solver GAMG;
         smoother GaussSeidel;
-        tolerance 1e-7;
+        tolerance 1e-8;
         relTol 0.01;
     }
     // {
@@ -53,9 +49,9 @@ solvers
     {
         solver          smoothSolver;
         smoother        symGaussSeidel;
-        nSweeps         1;
-        tolerance       1e-7;
-        relTol          0.1;
+        nSweeps         3;
+        tolerance       1e-8;
+        relTol          0.01;
         minIter         1;
     };
 

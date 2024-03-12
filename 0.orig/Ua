@@ -10,7 +10,7 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volVectorField;
-    object      U;
+    object      Ua;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -33,6 +33,7 @@ boundaryField
     {
         type            adjointOutletVelocity;
         inletValue      uniform (0 0 0); // uniform ($Umean 0 0);
+        value           $internalField;
     }
 
     hull

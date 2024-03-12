@@ -24,7 +24,8 @@ boundaryField
 
     inlet
     {
-        type            adjointFarFieldTMVar2; // adjointZeroInlet
+        // type            adjointFarFieldTMVar2; 
+        type            adjointZeroInlet; 
         value           $internalField;
     }
 

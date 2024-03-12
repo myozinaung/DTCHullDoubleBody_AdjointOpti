@@ -27,16 +27,18 @@ primalSolvers
         solutionControls
         {
             consistent yes;
-            nIters 1000;
+            nIters 150;
             residualControl
             {
                 "p.*"       1.e-5;
                 "U.*"       1.e-5;
+                "k.*"       5.e-6;
+                "omega.*"   5.e-6;
             }
             averaging
             {
                 average     true;
-                startIter   500;
+                startIter   50;
             }
         }
     }
@@ -68,11 +70,11 @@ adjointManagers
                         {
                             weight     1.;
                             type       force;
-                            patches    ("motorBike.*");
-                            direction  (1 0 0);
-                            Aref       0.75;
-                            rhoInf     1;
-                            UInf       20;
+                            patches    (hull);
+                            direction  (-1 0 0);
+                            rhoInf     998.8;
+                            Aref       6.221;
+                            UInf       1.668;
                         }
                     }
                 }
@@ -91,11 +93,13 @@ adjointManagers
                 solutionControls
                 {
                     consistent yes;
-                    nIters 1000;
+                    nIters 500;
                     residualControl
                     {
-                        "pa.*"       1.e-5;
-                        "Ua.*"       1.e-5;
+                        "pa.*"       1.e-8;
+                        "Ua.*"       1.e-8;
+                        "ka.*"       1.e-8;
+                        "wa.*"       1.e-8;
                     }
                 }
             }
@@ -111,17 +115,21 @@ optimisation
         type            shape;
         shapeType       volumetricBSplines;
         sensitivityType shapeFI;
-        patches         (motorBikeGroup);
-        maxInitChange   2.e-3;
+        patches         (hull);
+        maxInitChange   0.05;
     }
+    // updateMethod
+    // {
+    //     method conjugateGradient;
+    //     lineSearch
+    //     {
+    //         type    ArmijoConditions;
+    //     }
+    //     //eta 1; //optional
+    // }
     updateMethod
     {
-        method conjugateGradient;
-        lineSearch
-        {
-            type    ArmijoConditions;
-        }
-        //eta 1; //optional
+        method BFGS;
     }
 }
 

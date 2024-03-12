@@ -13,12 +13,19 @@ runParallel -s decompose redistributePar -decompose
 
 runParallel renumberMesh -overwrite
 
+runParallel patchSummary
+
 runParallel potentialFoam
 
 runParallel $(getApplication)
 
-# runApplication reconstructPar
-runParallel -s reconstruct redistributePar -reconstruct
+runParallel cumulativeDisplacement
+
+# # runApplication reconstructPar
+# runParallel -s reconstruct redistributePar -reconstruct
+
+runApplication reconstructParMesh -constant
+runApplication reconstructPar -latestTime
 
 touch case.foam
 #------------------------------------------------------------------------------

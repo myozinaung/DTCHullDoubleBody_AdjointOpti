@@ -5,6 +5,9 @@ cd "${0%/*}" || exit                                # Run from this directory
 
 mkdir -p constant/triSurface
 
+# copy initial control points from backup
+cp -rf constant/controlPoints.org constant/controlPoints
+
 # copy DTC hull surface from resources folder
 cp -f \
     "$FOAM_TUTORIALS"/resources/geometry/DTC-scaled.stl.gz \
