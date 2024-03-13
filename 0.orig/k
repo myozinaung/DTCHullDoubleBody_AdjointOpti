@@ -30,9 +30,10 @@ boundaryField
 
     outlet
     {
-       type            inletOutlet;
-       inletValue      $internalField;
-       value           $internalField;
+    //    type            inletOutlet;
+       type            zeroGradient;
+    //    inletValue      $internalField;
+    //    value           $internalField;
     }
 
     hull

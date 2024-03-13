@@ -28,6 +28,11 @@ boundaryField
     {
         type            zeroGradient;
     }
+    // {
+    //     type            outletInlet;
+    //     outletValue     uniform 0;
+    //     value           uniform 0;
+    // }
 
     outlet
     {
@@ -36,30 +41,10 @@ boundaryField
     
     }
 
-
     hull
     {
         type            zeroGradient;
     }
-
-
-    // // DTCHull Settings (p_rgh)
-    // inlet
-    // {
-    //     type            fixedFluxPressure;
-    //     value           $internalField;
-    // }
-
-    // outlet
-    // {
-    //     type            zeroGradient;
-    // }
-
-    // hull
-    // {
-    //     type            fixedFluxPressure;
-    //     value           $internalField;
-    // }
 
 }
 

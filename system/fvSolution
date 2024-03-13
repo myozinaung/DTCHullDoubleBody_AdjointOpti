@@ -18,12 +18,24 @@ FoamFile
 solvers
 {
 
-    "p.*|pa.*"
+    "p.*"
     {
         solver GAMG;
-        smoother GaussSeidel;
+        smoother GaussSeidel; // DICGaussSeidel
         tolerance 1e-8;
         relTol 0.01;
+        // nPreSweeps      1;
+        // nPostSweeps     3;
+    }
+
+    "pa.*"
+    {
+        solver GAMG;
+        smoother GaussSeidel; // DICGaussSeidel
+        tolerance 1e-15;
+        relTol 0.01;
+        nPreSweeps      2;
+        nPostSweeps     5;
     }
     // {
     //     solver           PCG;
@@ -65,8 +77,8 @@ solvers
 
 SIMPLE
 {
-    nNonOrthogonalCorrectors 0;
-    // consistent yes;
+    nNonOrthogonalCorrectors 3;
+    consistent yes;
 }
 
 potentialFlow
@@ -79,18 +91,19 @@ relaxationFactors
     fields
     {
         "p.*"        0.3;
-        "pa.*"       0.3;
+        "pa.*"       0.1;
     }
     equations
     {
         "U.*"        0.7;
-        "Ua.*"       0.7;
+        "Ua.*"       0.3;
         "k.*"        0.7;
-        "ka.*"       0.7;
+        "ka.*"       0.1;
         "omega.*"    0.7;
-        "wa.*"       0.7;
+        "wa.*"       0.1;
         "yWall.*"    0.5;
-        "da.*"       0.7;
+        "da.*"       0.5;
+        "pa.*"       0.1;
     }
 }
 

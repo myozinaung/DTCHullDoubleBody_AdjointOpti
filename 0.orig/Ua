@@ -28,6 +28,10 @@ boundaryField
         type            adjointInletVelocity;
         value           $internalField;
     }
+    // {
+    //     type            adjointFarFieldVelocity;
+    //     value           uniform ( 0 0 0 );
+    // }
 
     outlet
     {

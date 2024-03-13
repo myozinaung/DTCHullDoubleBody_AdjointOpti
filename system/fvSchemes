@@ -25,13 +25,18 @@ gradSchemes
     default         cellLimited Gauss linear 1;
     grad(U)         cellLimited Gauss linear 1;
     limitedGrad     cellLimited Gauss linear 1;
+
     gradUATC        cellLimited Gauss linear 1;
+    gradUaATC        cellLimited Gauss linear 1;
     gradUConv        cellLimited Gauss linear 1;
-    gradDConv        cellLimited Gauss linear 1;
     gradUaConv       cellLimited Gauss linear 1;
+
+    gradDConv        cellLimited Gauss linear 1;
+    gradDaConv       cellLimited Gauss linear 1;
+    
     gradKaConv       cellLimited Gauss linear 1;
     gradWaConv       cellLimited Gauss linear 1;
-    gradDaConv       cellLimited Gauss linear 1;
+    
 
 }
 
@@ -47,11 +52,11 @@ divSchemes
     div(-phi,ka)       bounded Gauss linearUpwind gradKaConv;
     div(-phi,wa)       bounded Gauss linearUpwind gradWaConv;
 
-    div((nuEff*dev2(T(grad(U))))) Gauss linear;
+    // div((nuEff*dev2(T(grad(U))))) Gauss linear;
     // div((nuEff*dev2(T(grad(Ua))))) Gauss linear;
 
-    div((nuEff*dev(grad(U).T()))) Gauss linear;
-    div((nuEff*dev(grad(Ua).T()))) Gauss linear;
+    // div((nuEff*dev(grad(U).T()))) Gauss linear;
+    // div((nuEff*dev(grad(Ua).T()))) Gauss linear;
 
     // div(phi,kMean) Gauss linearUpwind limitedGrad;
     // div(phi,omegaMean) Gauss linearUpwind limitedGrad;

@@ -24,7 +24,6 @@ boundaryField
 
     inlet
     {
-        // type            adjointFarFieldTMVar2; 
         type            adjointZeroInlet; 
         value           $internalField;
     }
@@ -32,6 +31,7 @@ boundaryField
     outlet
     {
         type            adjointOutletWa;
+        // type            adjointFarFieldTMVar2;
         value           uniform 0;
     }
 
