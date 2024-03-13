@@ -24,6 +24,7 @@ gradSchemes
     // default         Gauss linear;
     default         cellLimited Gauss linear 1;
     grad(U)         cellLimited Gauss linear 1;
+    grad(nuTilda)   cellLimited Gauss linear 1;
     limitedGrad     cellLimited Gauss linear 1;
 
     gradUATC        cellLimited Gauss linear 1;
@@ -52,17 +53,15 @@ divSchemes
     div(-phi,ka)       bounded Gauss linearUpwind gradKaConv;
     div(-phi,wa)       bounded Gauss linearUpwind gradWaConv;
 
-    // div((nuEff*dev2(T(grad(U))))) Gauss linear;
-    // div((nuEff*dev2(T(grad(Ua))))) Gauss linear;
-
-    // div((nuEff*dev(grad(U).T()))) Gauss linear;
-    // div((nuEff*dev(grad(Ua).T()))) Gauss linear;
-
-    // div(phi,kMean) Gauss linearUpwind limitedGrad;
-    // div(phi,omegaMean) Gauss linearUpwind limitedGrad;
+    div(-phiMean,Ua)        bounded Gauss upwind;
+    div(-phiMean,ka)        bounded Gauss upwind;
+    div(-phiMean,wa)        bounded Gauss upwind;
 
     div(-yPhi,da)              Gauss linearUpwind gradDaConv;
     div(yPhi,yWall)            Gauss linearUpwind gradDConv;
+
+    div(phi,nuTilda)        bounded Gauss upwind;
+    div(-phiMean,nuaTilda)  bounded Gauss upwind;
 
 }
 
@@ -85,7 +84,16 @@ snGradSchemes
 
 wallDist
 {
-    method          meshWave;
+    // method          meshWave;
+
+    method advectionDiffusion;
+    advectionDiffusionCoeffs
+    {
+        method    meshWave;
+        tolerance 1.e-5;
+        maxIter   1000;
+        epsilon   0.1;
+    }
 }
 
 

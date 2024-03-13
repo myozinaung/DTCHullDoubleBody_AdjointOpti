@@ -34,8 +34,8 @@ solvers
         smoother GaussSeidel; // DICGaussSeidel
         tolerance 1e-15;
         relTol 0.01;
-        nPreSweeps      2;
-        nPostSweeps     5;
+        // nPreSweeps      2;
+        // nPostSweeps     5;
     }
     // {
     //     solver           PCG;
@@ -57,7 +57,7 @@ solvers
         relTol           0.01;
     };
 
-    "U.*|Ua.*|yWall|da|k|ka|omega|wa"
+    "U.*|Ua.*|yWall|da|k|ka|omega|wa|nuTilda|nuaTilda"
     {
         solver          smoothSolver;
         smoother        symGaussSeidel;
@@ -77,8 +77,8 @@ solvers
 
 SIMPLE
 {
-    nNonOrthogonalCorrectors 3;
-    consistent yes;
+    nNonOrthogonalCorrectors 0;
+    // consistent yes;
 }
 
 potentialFlow
@@ -104,6 +104,9 @@ relaxationFactors
         "yWall.*"    0.5;
         "da.*"       0.5;
         "pa.*"       0.1;
+
+        nuTilda   0.7;
+        nuaTilda  0.2;
     }
 }
 

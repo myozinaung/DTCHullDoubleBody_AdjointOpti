@@ -27,7 +27,7 @@ primalSolvers
         solutionControls
         {
             consistent yes;
-            nIters 1000;
+            nIters 500;
             residualControl
             {
                 "p.*"       1.e-5;
@@ -96,7 +96,7 @@ adjointManagers
                 solutionControls
                 {
                     consistent yes;
-                    nIters 1000;
+                    nIters 500;
                     residualControl
                     {
                         "pa.*"       1.e-8;
@@ -106,6 +106,31 @@ adjointManagers
                     }
                 }
             }
+            // vol
+            // {
+            //     // choose adjoint solver
+            //     //----------------------
+            //     active                 true;
+            //     type                   null;
+            //     isConstraint           true;
+
+            //     // manage objectives
+            //     //------------------
+            //     objectives
+            //     {
+            //         type                geometric;
+            //         objectiveNames
+            //         {
+            //             vol
+            //             {
+            //                 weight          1; // -1 for maximisation
+            //                 type            partialVolume;
+            //                 patches         (hull);
+            //                 // target          0; // -0.15
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 }
@@ -121,18 +146,39 @@ optimisation
         patches         (hull);
         maxInitChange   0.05;
     }
+    // updateMethod
+    // {
+    //     method conjugateGradient;
+    //     lineSearch
+    //     {
+    //         type    ArmijoConditions;
+    //     }
+    //     //eta 1; //optional
+    // }
     updateMethod
     {
-        method conjugateGradient;
-        lineSearch
-        {
-            type    ArmijoConditions;
-        }
-        //eta 1; //optional
+        method BFGS;
     }
     // updateMethod
     // {
-    //     method BFGS;
+    //     method          ISQP;
+    //     delta           1;
+    //     lineSearch
+    //     {
+    //         type ArmijoConditions;
+    //         stepUpdateType quadratic;
+    //         minRatio 0.05;
+    //     }
+    // }
+    // updateMethod
+    // {
+    //     method  SQP;
+    //     SQP
+    //     {
+    //         etaHessian        0.8;
+    //         nSteepestDescent  1;
+    //         scaleFirstHessian true;
+    //     }
     // }
 }
 

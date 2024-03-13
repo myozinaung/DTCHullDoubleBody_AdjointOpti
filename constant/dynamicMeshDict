@@ -21,29 +21,39 @@ volumetricBSplinesMotionSolverCoeffs
     box
     {
         type    cartesian;
-        nCPsU   7;
-        nCPsV   7;
-        nCPsW   7;
-        degreeU 3;
-        degreeV 3;
-        degreeW 3;
+        // nCPsU   40;
+        // nCPsV   15;
+        // nCPsW   15;
+        // degreeU 3;
+        // degreeV 3;
+        // degreeW 3;
+
+        nCPsU   3;
+        nCPsV   3;
+        nCPsW   3;
+        degreeU 2;
+        degreeV 2;
+        degreeW 2;
 
         // controlPointsDefinition fromFile;
         controlPointsDefinition axisAligned;
         lowerCpBounds           ( 6.0 -0.15   -0.1);
-        upperCpBounds           ( 6.4  0.150   0.3);
+        upperCpBounds           ( 6.4  0.0   0.3);       
+        // lowerCpBounds           ( -0.2 -0.5   -0.1);
+        // upperCpBounds           ( 6.4  0.0   0.3);
 
         confineUMovement false;
         confineVMovement true;
         confineWMovement true;
         confineBoundaryControlPoints false;
 
-        confineUMinCPs ( (true true true) (true true true) ); // first two columns of CPs (count from UMin) are confined in all 3 directions
+        // confineUMinCPs ( (true true true) (true true true) ); // first two columns of CPs (count from UMin) are confined in all 3 directions
+        confineUMinCPs ( (true true true) ); // first two columns of CPs (count from UMin) are confined in all 3 directions
         confineUMaxCPs ( (true true true) ); // first column of CPs (count from UMax) is confined in all 3 directions
-        confineVMinCPs ( (true true true) (true true true) );
-        confineVMaxCPs ( (true true true) (true true true) );
-        confineWMinCPs ( (true true true) );
-        confineWMaxCPs ( (true true true) (true true true) );
+        // confineVMinCPs ( (true true true) (true true true) );
+        // confineVMaxCPs ( (true true true) (true true true) );
+        // confineWMinCPs ( (true true true) );
+        // confineWMaxCPs ( (true true true) (true true true) );
     }
 }
 

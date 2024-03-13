@@ -18,7 +18,8 @@ simulationType      RAS;
 
 RAS
 {
-    RASModel        kOmegaSST;
+    // RASModel        kOmegaSST;
+    RASModel        SpalartAllmaras;
 
     turbulence      on;
 

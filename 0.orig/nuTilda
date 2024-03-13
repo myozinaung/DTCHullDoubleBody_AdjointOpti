@@ -9,22 +9,40 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    object      adjointTurbulenceProperties;
+    class       volScalarField;
+    object      nuTilda;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-// adjointRASModel adjointkOmegaSST;
 
-adjointRASModel   adjointSpalartAllmaras;
+dimensions      [0 2 -1 0 0 0 0];
 
-adjointSpalartAllmarasCoeffs
+internalField   uniform 1.5e-04;
+
+boundaryField
 {
-    nSmooth           1;
-    zeroATCPatchTypes (wall patch);
-    maskType          pointCells;
+    #includeEtc "caseDicts/setConstraintTypes"
+
+    inlet
+    {
+        type  fixedValue;
+        value $internalField;
+    }
+    
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      $internalField;
+        value           $internalField;
+    }
+
+    hull
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+
 }
 
-adjointTurbulence on;
 
 // ************************************************************************* //

@@ -16,7 +16,7 @@ FoamFile
 
 dimensions      [0 2 -1 0 0 0 0];
 
-internalField   uniform 5e-07;
+internalField   uniform 0;
 
 boundaryField
 {
@@ -24,22 +24,20 @@ boundaryField
 
     inlet
     {
-        type            fixedValue;
-        value           $internalField;
+        type            calculated;
+        value           uniform 0;
     }
 
     outlet
     {
-        type            zeroGradient;
+        type            calculated;
+        value           uniform 0;
     }
 
     hull
     {
-        // type            nutkRoughWallFunction;
-        type            nutkWallFunction;
-        // Ks              uniform 100e-6;
-        // Cs              uniform 0.5;
-        value           $internalField;
+        type            nutUSpaldingWallFunction;
+        value           uniform 0;
     }
 }
 
