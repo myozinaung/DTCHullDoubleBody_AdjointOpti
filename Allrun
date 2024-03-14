@@ -24,8 +24,11 @@ runParallel cumulativeDisplacement
 # # runApplication reconstructPar
 # runParallel -s reconstruct redistributePar -reconstruct
 
-runApplication reconstructParMesh -constant
-runApplication reconstructPar -latestTime
+# runApplication reconstructParMesh -constant
+# runApplication reconstructPar -latestTime
+
+runApplication reconstructParMesh
+runApplication reconstructPar
 
 touch case.foam
 #------------------------------------------------------------------------------
