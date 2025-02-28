@@ -14,16 +14,16 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-// adjointRASModel adjointkOmegaSST;
+adjointRASModel adjointkOmegaSST;
 
-adjointRASModel   adjointSpalartAllmaras;
+// adjointRASModel   adjointSpalartAllmaras;
 
-adjointSpalartAllmarasCoeffs
-{
-    nSmooth           1;
-    zeroATCPatchTypes (wall patch);
-    maskType          pointCells;
-}
+// adjointSpalartAllmarasCoeffs
+// {
+//     nSmooth           1;
+//     zeroATCPatchTypes (wall patch);
+//     maskType          pointCells;
+// }
 
 adjointTurbulence on;
 

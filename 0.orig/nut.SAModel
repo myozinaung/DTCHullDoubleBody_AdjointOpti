@@ -9,21 +9,36 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    object      turbulenceProperties;
+    class       volScalarField;
+    object      nut;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-simulationType      RAS;
+dimensions      [0 2 -1 0 0 0 0];
 
-RAS
+internalField   uniform 0;
+
+boundaryField
 {
-    RASModel        kOmegaSST;
-    // RASModel        SpalartAllmaras;
+    #includeEtc "caseDicts/setConstraintTypes"
 
-    turbulence      on;
+    inlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
 
-    printCoeffs     on;
+    outlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+
+    hull
+    {
+        type            nutUSpaldingWallFunction;
+        value           uniform 0;
+    }
 }
 
 
